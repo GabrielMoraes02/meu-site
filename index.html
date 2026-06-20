@@ -142,6 +142,82 @@
     border-color: var(--line);
     background: var(--bg-soft);
   }
+
+  /* ---------- music player ---------- */
+  .music-player{
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    border-radius: 999px;
+    padding: 10px 16px 10px 10px;
+    box-shadow: 0 16px 36px -12px rgba(28,30,27,0.4);
+    transition: padding 0.25s ease;
+  }
+  .music-toggle{
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .music-toggle:hover{ transform: scale(1.06); }
+  .music-toggle svg{ width: 16px; height: 16px; }
+  .music-label{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #E7E3D8;
+    white-space: nowrap;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-width 0.3s ease, opacity 0.3s ease;
+  }
+  .music-player.playing .music-label{
+    max-width: 160px;
+    opacity: 1;
+    margin-right: 4px;
+  }
+  .music-bars{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 14px;
+  }
+  .music-bars span{
+    width: 3px;
+    background: #E8A06F;
+    border-radius: 2px;
+    display: inline-block;
+    animation: bar-bounce 0.9s ease-in-out infinite;
+  }
+  .music-bars span:nth-child(1){ height: 6px; animation-delay: 0s; }
+  .music-bars span:nth-child(2){ height: 12px; animation-delay: 0.15s; }
+  .music-bars span:nth-child(3){ height: 8px; animation-delay: 0.3s; }
+  @keyframes bar-bounce{
+    0%, 100%{ transform: scaleY(0.4); }
+    50%{ transform: scaleY(1); }
+  }
+  .music-player:not(.playing) .music-bars{ display: none; }
+  #yt-frame-wrap{
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+  @media (max-width: 600px){
+    .music-player{ bottom: 18px; right: 18px; }
+  }
   .nav-links a{
     color: var(--ink-soft);
     position: relative;
@@ -805,6 +881,18 @@
   </div>
 </section>
 
+<div class="music-player" id="musicPlayer">
+  <button class="music-toggle" id="musicToggle" aria-label="Tocar música lo-fi">
+    <svg id="iconPlay" viewBox="0 0 24 24" fill="#1C1E1B"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="iconPause" viewBox="0 0 24 24" fill="#1C1E1B" style="display:none;"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+  </button>
+  <span class="music-label" data-i18n="music.label">lo-fi para codar</span>
+  <div class="music-bars"><span></span><span></span><span></span></div>
+</div>
+<div id="yt-frame-wrap">
+  <div id="yt-player"></div>
+</div>
+
 <footer>
   <div class="wrap" data-i18n="footer.text">Gabriel Resende de Moraes · Mesquita, RJ · (21) 98248-7195</div>
 </footer>
@@ -863,7 +951,8 @@
       "contact.title": "Tem um projeto em mente? <em>Vamos conversar.</em>",
       "contact.sub": "Estou aberto a oportunidades como desenvolvedor full stack. Me encontre nos canais abaixo ou envie um e-mail direto.",
       "contact.email": "e-mail",
-      "footer.text": "Gabriel Resende de Moraes · Mesquita, RJ · (21) 98248-7195"
+      "footer.text": "Gabriel Resende de Moraes · Mesquita, RJ · (21) 98248-7195",
+      "music.label": "lo-fi para codar"
     },
     en: {
       "nav.sobre": "ABOUT", "nav.skills": "SKILLS", "nav.experiencia": "EXPERIENCE", "nav.contato": "CONTACT",
@@ -916,7 +1005,8 @@
       "contact.title": "Have a project in mind? <em>Let's talk.</em>",
       "contact.sub": "I'm open to opportunities as a full stack developer. Find me on the channels below or send a direct email.",
       "contact.email": "email",
-      "footer.text": "Gabriel Resende de Moraes · Mesquita, RJ, Brazil · (21) 98248-7195"
+      "footer.text": "Gabriel Resende de Moraes · Mesquita, RJ, Brazil · (21) 98248-7195",
+      "music.label": "lo-fi to code to"
     }
   };
 
@@ -1006,6 +1096,49 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ---------- music player (YouTube lo-fi, hidden iframe) ----------
+  let ytPlayer = null;
+  let ytReady = false;
+  let wantsPlay = false;
+  const VIDEO_ID = 'sF80I-TQiW0';
+
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+
+  window.onYouTubeIframeAPIReady = function () {
+    ytPlayer = new YT.Player('yt-player', {
+      height: '1', width: '1',
+      videoId: VIDEO_ID,
+      playerVars: { autoplay: 0, controls: 0 },
+      events: {
+        onReady: function () {
+          ytReady = true;
+          if (wantsPlay) ytPlayer.playVideo();
+        }
+      }
+    });
+  };
+
+  const musicPlayer = document.getElementById('musicPlayer');
+  const musicToggle = document.getElementById('musicToggle');
+  const iconPlay = document.getElementById('iconPlay');
+  const iconPause = document.getElementById('iconPause');
+  let isPlaying = false;
+
+  musicToggle.addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    wantsPlay = isPlaying;
+    musicPlayer.classList.toggle('playing', isPlaying);
+    iconPlay.style.display = isPlaying ? 'none' : 'block';
+    iconPause.style.display = isPlaying ? 'block' : 'none';
+    musicToggle.setAttribute('aria-label', isPlaying ? 'Pausar música' : 'Tocar música lo-fi');
+
+    if (ytReady && ytPlayer) {
+      isPlaying ? ytPlayer.playVideo() : ytPlayer.pauseVideo();
+    }
+  });
 </script>
 
 <script>
