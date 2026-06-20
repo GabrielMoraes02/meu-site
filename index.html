@@ -118,6 +118,30 @@
     color: var(--line);
     font-size: 13px;
   }
+  .lang-switch{
+    display: flex;
+    gap: 4px;
+  }
+  .lang-flag{
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 17px;
+    line-height: 1;
+    padding: 5px 7px;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .lang-flag:hover{
+    opacity: 0.8;
+    transform: translateY(-1px);
+  }
+  .lang-flag.active{
+    opacity: 1;
+    border-color: var(--line);
+    background: var(--bg-soft);
+  }
   .nav-links a{
     color: var(--ink-soft);
     position: relative;
@@ -523,13 +547,18 @@
   <div class="nav-inner">
     <div class="nav-logo">Gabriel Moraes<span>.</span>dev</div>
     <div class="nav-links">
-      <a href="#sobre">SOBRE</a>
+      <a href="#sobre" data-i18n="nav.sobre">SOBRE</a>
       <span class="nav-sep">/</span>
-      <a href="#skills">SKILLS</a>
+      <a href="#skills" data-i18n="nav.skills">SKILLS</a>
       <span class="nav-sep">/</span>
-      <a href="#experiencia">EXPERIÊNCIA</a>
+      <a href="#experiencia" data-i18n="nav.experiencia">EXPERIÊNCIA</a>
       <span class="nav-sep">/</span>
-      <a href="#contato">CONTATO</a>
+      <a href="#contato" data-i18n="nav.contato">CONTATO</a>
+      <span class="nav-sep">/</span>
+      <div class="lang-switch">
+        <button class="lang-flag active" data-lang="pt" aria-label="Português" title="Português">🇧🇷</button>
+        <button class="lang-flag" data-lang="en" aria-label="English" title="English">🇺🇸</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -538,16 +567,16 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">disponível para novas oportunidades</div>
-      <h1>Gabriel Resende<br><em>desenvolve</em> software<br>com dados no centro.</h1>
-      <p class="hero-sub">
+      <div class="eyebrow" data-i18n="hero.eyebrow">disponível para novas oportunidades</div>
+      <h1 data-i18n="hero.title">Gabriel Resende<br><em>desenvolve</em> software<br>com dados no centro.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">
         Desenvolvedor Full Stack formado em Ciência da Computação, cursando pós-graduação na PUC-Rio.
         Construo aplicações com Node.js, React e Python, e trago experiência sólida em análise de dados
         e automação para apoiar decisões com mais clareza.
       </p>
       <div class="hero-cta">
-        <a href="#contato" class="btn btn-solid">Vamos conversar →</a>
-        <a href="#experiencia" class="btn btn-ghost">Ver experiência</a>
+        <a href="#contato" class="btn btn-solid" data-i18n="hero.cta1">Vamos conversar →</a>
+        <a href="#experiencia" class="btn btn-ghost" data-i18n="hero.cta2">Ver experiência</a>
       </div>
     </div>
 
@@ -566,26 +595,26 @@
 <section class="about" id="sobre">
   <div class="wrap about-grid">
     <div class="reveal">
-      <div class="eyebrow">// sobre mim</div>
-      <h2 style="margin-bottom:24px;">Da análise de dados ao código full stack.</h2>
+      <div class="eyebrow" data-i18n="about.eyebrow">// sobre mim</div>
+      <h2 style="margin-bottom:24px;" data-i18n="about.title">Da análise de dados ao código full stack.</h2>
       <div class="about-text">
-        <p>
+        <p data-i18n="about.p1">
           Sou <strong>Gabriel Resende de Moraes</strong>, graduado em Ciência da Computação pela Estácio
           e atualmente em pós-graduação em <strong>Desenvolvimento Full Stack na PUC-Rio</strong>
           (conclusão prevista em 01/2027).
         </p>
-        <p>
+        <p data-i18n="about.p2">
           Minha trajetória passou pela área de dados — montando dashboards interativos no Power BI,
           criando KPIs e automatizando relatórios — antes de migrar para o desenvolvimento de software.
           Hoje uno essas duas frentes: construo aplicações pensando em como os dados vão sustentar
           decisões reais.
         </p>
-        <p>
+        <p data-i18n="about.p3">
           Vivi seis meses em <strong>Jacksonville, Flórida</strong>, em um intercâmbio que me deu
           fluência em inglês e experiência direta em ambientes multiculturais — algo que levo para
           a forma como me comunico em equipes de trabalho.
         </p>
-        <p>
+        <p data-i18n="about.p4">
           Gosto de colocar a mão na massa em projetos próprios para fixar o que estudo —
           já passei por aplicações full stack do front ao banco de dados, sempre buscando
           entender o problema de quem vai usar antes de escrever a primeira linha de código.
@@ -593,38 +622,38 @@
       </div>
 
       <div class="edu-card">
-        <span>2025</span>
-        <h4>Ciência da Computação — Estácio</h4>
+        <span data-i18n="about.edu1date">2025</span>
+        <h4 data-i18n="about.edu1">Ciência da Computação — Estácio</h4>
       </div>
       <div class="edu-card">
-        <span>previsão 01/2027</span>
-        <h4>Pós-graduação em Desenvolvimento Full Stack — PUC-Rio</h4>
+        <span data-i18n="about.edu2date">previsão 01/2027</span>
+        <h4 data-i18n="about.edu2">Pós-graduação em Desenvolvimento Full Stack — PUC-Rio</h4>
       </div>
     </div>
 
     <div class="reveal">
-      <div class="eyebrow">// idiomas</div>
+      <div class="eyebrow" data-i18n="about.langs.eyebrow">// idiomas</div>
       <div class="langs">
         <div class="lang-row">
-          <span class="lang-name">Português</span>
+          <span class="lang-name" data-i18n="about.langs.pt">Português</span>
           <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
-          <span class="lang-level">nativo</span>
+          <span class="lang-level" data-i18n="about.langs.ptlevel">nativo</span>
         </div>
         <div class="lang-row">
-          <span class="lang-name">Inglês</span>
+          <span class="lang-name" data-i18n="about.langs.en">Inglês</span>
           <div class="lang-bar"><div class="lang-fill" style="width:95%"></div></div>
-          <span class="lang-level">fluente</span>
+          <span class="lang-level" data-i18n="about.langs.enlevel">fluente</span>
         </div>
         <div class="lang-row">
-          <span class="lang-name">Espanhol</span>
+          <span class="lang-name" data-i18n="about.langs.es">Espanhol</span>
           <div class="lang-bar"><div class="lang-fill" style="width:55%"></div></div>
-          <span class="lang-level">intermediário</span>
+          <span class="lang-level" data-i18n="about.langs.eslevel">intermediário</span>
         </div>
       </div>
 
       <div style="margin-top:56px;">
-        <div class="eyebrow">// destaque</div>
-        <p style="color:var(--ink-soft); font-size:15.5px; line-height:1.7;">
+        <div class="eyebrow" data-i18n="about.highlight.eyebrow">// destaque</div>
+        <p style="color:var(--ink-soft); font-size:15.5px; line-height:1.7;" data-i18n="about.highlight.text">
           Seis meses de imersão total em inglês nos EUA, unindo fluência no idioma com vivência
           real em ambiente de trabalho multicultural — uma combinação pouco comum entre devs no
           início de carreira.
@@ -638,58 +667,58 @@
 <section id="skills">
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>O que eu uso para construir.</h2>
-      <span class="section-count mono">05 categorias</span>
+      <h2 data-i18n="skills.title">O que eu uso para construir.</h2>
+      <span class="section-count mono" data-i18n="skills.count">05 categorias</span>
     </div>
 
     <div class="skills-grid">
       <div class="skill-card reveal">
-        <div class="sk-head"><h3>Backend</h3><span class="sk-tag">server-side</span></div>
+        <div class="sk-head"><h3 data-i18n="skills.backend.title">Backend</h3><span class="sk-tag" data-i18n="skills.backend.tag">server-side</span></div>
         <ul class="tag-list">
           <li>Node.js</li><li>TypeScript</li><li>Java (Spring Boot)</li><li>Python</li><li>APIs RESTful</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
-        <div class="sk-head"><h3>Frontend</h3><span class="sk-tag">interface</span></div>
+        <div class="sk-head"><h3 data-i18n="skills.frontend.title">Frontend</h3><span class="sk-tag" data-i18n="skills.frontend.tag">interface</span></div>
         <ul class="tag-list">
           <li>JavaScript</li><li>React.js</li><li>Next.js</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
-        <div class="sk-head"><h3>Bancos de Dados</h3><span class="sk-tag">dados</span></div>
+        <div class="sk-head"><h3 data-i18n="skills.db.title">Bancos de Dados</h3><span class="sk-tag" data-i18n="skills.db.tag">dados</span></div>
         <ul class="tag-list">
-          <li>PostgreSQL</li><li>MySQL</li><li>Modelagem de Dados</li><li>SQL</li>
+          <li>PostgreSQL</li><li>MySQL</li><li data-i18n="skills.db.modelagem">Modelagem de Dados</li><li>SQL</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
-        <div class="sk-head"><h3>DevOps & Ferramentas</h3><span class="sk-tag">workflow</span></div>
+        <div class="sk-head"><h3 data-i18n="skills.devops.title">DevOps &amp; Ferramentas</h3><span class="sk-tag" data-i18n="skills.devops.tag">workflow</span></div>
         <ul class="tag-list">
           <li>Git</li><li>GitHub</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
-        <div class="sk-head"><h3>IA & Automação</h3><span class="sk-tag">emergente</span></div>
+        <div class="sk-head"><h3 data-i18n="skills.ai.title">IA &amp; Automação</h3><span class="sk-tag" data-i18n="skills.ai.tag">emergente</span></div>
         <ul class="tag-list">
-          <li>Engenharia de Prompt</li><li>Automação com LLMs</li><li>Integração de APIs de IA</li>
+          <li data-i18n="skills.ai.prompt">Engenharia de Prompt</li><li data-i18n="skills.ai.llm">Automação com LLMs</li><li data-i18n="skills.ai.api">Integração de APIs de IA</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
-        <div class="sk-head"><h3>Fundamentos</h3><span class="sk-tag">base</span></div>
+        <div class="sk-head"><h3 data-i18n="skills.fund.title">Fundamentos</h3><span class="sk-tag" data-i18n="skills.fund.tag">base</span></div>
         <ul class="tag-list">
-          <li>Estrutura de Dados</li><li>POO</li><li>Algoritmos</li>
+          <li data-i18n="skills.fund.ed">Estrutura de Dados</li><li>POO</li><li data-i18n="skills.fund.algo">Algoritmos</li>
         </ul>
       </div>
     </div>
 
     <div class="soft-row reveal">
-      <span class="soft-pill">Comunicação Multicultural</span>
-      <span class="soft-pill">Resolução de Problemas Complexos</span>
-      <span class="soft-pill">Trabalho em Equipe</span>
+      <span class="soft-pill" data-i18n="skills.soft1">Comunicação Multicultural</span>
+      <span class="soft-pill" data-i18n="skills.soft2">Resolução de Problemas Complexos</span>
+      <span class="soft-pill" data-i18n="skills.soft3">Trabalho em Equipe</span>
     </div>
   </div>
 </section>
@@ -698,40 +727,40 @@
 <section class="about" id="experiencia">
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Trajetória profissional.</h2>
+      <h2 data-i18n="exp.title">Trajetória profissional.</h2>
       <span class="section-count mono">2022 — 2025</span>
     </div>
 
     <div class="timeline">
       <div class="tl-item reveal">
         <span class="tl-date">JUN 2025 — DEZ 2025</span>
-        <h3>Desenvolvimento Profissional & Imersão Internacional</h3>
-        <span class="tl-org">Jacksonville, Flórida, EUA</span>
+        <h3 data-i18n="exp.item1.title">Desenvolvimento Profissional &amp; Imersão Internacional</h3>
+        <span class="tl-org" data-i18n="exp.item1.org">Jacksonville, Flórida, EUA</span>
         <ul>
-          <li>Concluí programa de intercâmbio internacional com foco no aprimoramento da língua inglesa.</li>
-          <li>Desenvolvi fluência, ampliei vocabulário e fortaleci a comunicação em contextos multiculturais e profissionais.</li>
+          <li data-i18n="exp.item1.l1">Concluí programa de intercâmbio internacional com foco no aprimoramento da língua inglesa.</li>
+          <li data-i18n="exp.item1.l2">Desenvolvi fluência, ampliei vocabulário e fortaleci a comunicação em contextos multiculturais e profissionais.</li>
         </ul>
       </div>
 
       <div class="tl-item reveal">
         <span class="tl-date">OUT 2024 — FEV 2025</span>
-        <h3>Service Dispatcher</h3>
-        <span class="tl-org">GLH General Services Corp · Remoto</span>
+        <h3 data-i18n="exp.item2.title">Service Dispatcher</h3>
+        <span class="tl-org" data-i18n="exp.item2.org">GLH General Services Corp · Remoto</span>
         <ul>
-          <li>Coordenei agendamento e despacho de serviços automotivos, garantindo comunicação eficiente entre clientes, técnicos e fornecedores.</li>
-          <li>Gerenciei ordens de serviço, prazos e prioridades, contribuindo para a eficiência operacional.</li>
-          <li>Desenvolvi habilidades de comunicação em inglês e negociação em ambiente multicultural.</li>
+          <li data-i18n="exp.item2.l1">Coordenei agendamento e despacho de serviços automotivos, garantindo comunicação eficiente entre clientes, técnicos e fornecedores.</li>
+          <li data-i18n="exp.item2.l2">Gerenciei ordens de serviço, prazos e prioridades, contribuindo para a eficiência operacional.</li>
+          <li data-i18n="exp.item2.l3">Desenvolvi habilidades de comunicação em inglês e negociação em ambiente multicultural.</li>
         </ul>
       </div>
 
       <div class="tl-item reveal">
         <span class="tl-date">SET 2022 — FEV 2023</span>
-        <h3>Monitor TI</h3>
-        <span class="tl-org">CNA Idiomas · Rio de Janeiro, Brasil</span>
+        <h3 data-i18n="exp.item3.title">Monitor TI</h3>
+        <span class="tl-org" data-i18n="exp.item3.org">CNA Idiomas · Rio de Janeiro, Brasil</span>
         <ul>
-          <li>Desenvolvi e mantive dashboards interativos no Power BI, com coleta, limpeza e análise de dados.</li>
-          <li>Organizei bases de dados, criei KPIs e automatizei relatórios para apoiar a tomada de decisão estratégica.</li>
-          <li>Atuei no controle da área de infraestrutura, com suporte de rede e sistema operacional.</li>
+          <li data-i18n="exp.item3.l1">Desenvolvi e mantive dashboards interativos no Power BI, com coleta, limpeza e análise de dados.</li>
+          <li data-i18n="exp.item3.l2">Organizei bases de dados, criei KPIs e automatizei relatórios para apoiar a tomada de decisão estratégica.</li>
+          <li data-i18n="exp.item3.l3">Atuei no controle da área de infraestrutura, com suporte de rede e sistema operacional.</li>
         </ul>
       </div>
     </div>
@@ -742,14 +771,14 @@
 <section id="contato">
   <div class="wrap">
     <div class="contact reveal" style="padding: 90px 40px;">
-      <div class="eyebrow" style="justify-content:center; color:#E8A06F;">// vamos trabalhar juntos</div>
-      <h2>Tem um projeto em mente? <em>Vamos conversar.</em></h2>
-      <p>Estou aberto a oportunidades como desenvolvedor full stack. Me encontre nos canais abaixo ou envie um e-mail direto.</p>
+      <div class="eyebrow" style="justify-content:center; color:#E8A06F;" data-i18n="contact.eyebrow">// vamos trabalhar juntos</div>
+      <h2 data-i18n="contact.title">Tem um projeto em mente? <em>Vamos conversar.</em></h2>
+      <p data-i18n="contact.sub">Estou aberto a oportunidades como desenvolvedor full stack. Me encontre nos canais abaixo ou envie um e-mail direto.</p>
 
       <div class="social-row">
         <a class="social-card" href="mailto:gbmoraes196@gmail.com">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8A06F" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6 12 13 2 6"/></svg>
-          <span><span class="sc-label">e-mail</span>gbmoraes196@gmail.com</span>
+          <span><span class="sc-label" data-i18n="contact.email">e-mail</span>gbmoraes196@gmail.com</span>
         </a>
 
         <a class="social-card" href="https://www.linkedin.com/in/gabriel-moraes98/" target="_blank" rel="noopener">
@@ -777,26 +806,169 @@
 </section>
 
 <footer>
-  <div class="wrap">Gabriel Resende de Moraes · Mesquita, RJ · (21) 98248-7195</div>
+  <div class="wrap" data-i18n="footer.text">Gabriel Resende de Moraes · Mesquita, RJ · (21) 98248-7195</div>
 </footer>
 
 <script>
-  // terminal typing animation
-  const lines = [
-    { p: "$ ", t: "whoami", k: true },
-    { t: "Gabriel Resende de Moraes" },
-    { p: "$ ", t: "cat perfil.txt", k: true },
-    { t: "> Dev Full Stack | Estácio + PUC-Rio" },
-    { p: "$ ", t: "echo $LOCALIZACAO", k: true },
-    { t: "Mesquita, RJ — Brasil 🇧🇷" },
-    { p: "$ ", t: "status --disponibilidade", k: true },
-    { t: "✓ aberto a novas oportunidades" },
-  ];
+  // ---------- i18n dictionary ----------
+  const i18n = {
+    pt: {
+      "nav.sobre": "SOBRE", "nav.skills": "SKILLS", "nav.experiencia": "EXPERIÊNCIA", "nav.contato": "CONTATO",
+      "hero.eyebrow": "disponível para novas oportunidades",
+      "hero.title": "Gabriel Resende<br><em>desenvolve</em> software<br>com dados no centro.",
+      "hero.sub": "Desenvolvedor Full Stack formado em Ciência da Computação, cursando pós-graduação na PUC-Rio. Construo aplicações com Node.js, React e Python, e trago experiência sólida em análise de dados e automação para apoiar decisões com mais clareza.",
+      "hero.cta1": "Vamos conversar →",
+      "hero.cta2": "Ver experiência",
+      "about.eyebrow": "// sobre mim",
+      "about.title": "Da análise de dados ao código full stack.",
+      "about.p1": "Sou <strong>Gabriel Resende de Moraes</strong>, graduado em Ciência da Computação pela Estácio e atualmente em pós-graduação em <strong>Desenvolvimento Full Stack na PUC-Rio</strong> (conclusão prevista em 01/2027).",
+      "about.p2": "Minha trajetória passou pela área de dados — montando dashboards interativos no Power BI, criando KPIs e automatizando relatórios — antes de migrar para o desenvolvimento de software. Hoje uno essas duas frentes: construo aplicações pensando em como os dados vão sustentar decisões reais.",
+      "about.p3": "Vivi seis meses em <strong>Jacksonville, Flórida</strong>, em um intercâmbio que me deu fluência em inglês e experiência direta em ambientes multiculturais — algo que levo para a forma como me comunico em equipes de trabalho.",
+      "about.p4": "Gosto de colocar a mão na massa em projetos próprios para fixar o que estudo — já passei por aplicações full stack do front ao banco de dados, sempre buscando entender o problema de quem vai usar antes de escrever a primeira linha de código.",
+      "about.edu1date": "2025", "about.edu1": "Ciência da Computação — Estácio",
+      "about.edu2date": "previsão 01/2027", "about.edu2": "Pós-graduação em Desenvolvimento Full Stack — PUC-Rio",
+      "about.langs.eyebrow": "// idiomas",
+      "about.langs.pt": "Português", "about.langs.ptlevel": "nativo",
+      "about.langs.en": "Inglês", "about.langs.enlevel": "fluente",
+      "about.langs.es": "Espanhol", "about.langs.eslevel": "intermediário",
+      "about.highlight.eyebrow": "// destaque",
+      "about.highlight.text": "Seis meses de imersão total em inglês nos EUA, unindo fluência no idioma com vivência real em ambiente de trabalho multicultural — uma combinação pouco comum entre devs no início de carreira.",
+      "skills.title": "O que eu uso para construir.",
+      "skills.count": "05 categorias",
+      "skills.backend.title": "Backend", "skills.backend.tag": "server-side",
+      "skills.frontend.title": "Frontend", "skills.frontend.tag": "interface",
+      "skills.db.title": "Bancos de Dados", "skills.db.tag": "dados", "skills.db.modelagem": "Modelagem de Dados",
+      "skills.devops.title": "DevOps &amp; Ferramentas", "skills.devops.tag": "workflow",
+      "skills.ai.title": "IA &amp; Automação", "skills.ai.tag": "emergente",
+      "skills.ai.prompt": "Engenharia de Prompt", "skills.ai.llm": "Automação com LLMs", "skills.ai.api": "Integração de APIs de IA",
+      "skills.fund.title": "Fundamentos", "skills.fund.tag": "base",
+      "skills.fund.ed": "Estrutura de Dados", "skills.fund.algo": "Algoritmos",
+      "skills.soft1": "Comunicação Multicultural", "skills.soft2": "Resolução de Problemas Complexos", "skills.soft3": "Trabalho em Equipe",
+      "exp.title": "Trajetória profissional.",
+      "exp.item1.title": "Desenvolvimento Profissional &amp; Imersão Internacional",
+      "exp.item1.org": "Jacksonville, Flórida, EUA",
+      "exp.item1.l1": "Concluí programa de intercâmbio internacional com foco no aprimoramento da língua inglesa.",
+      "exp.item1.l2": "Desenvolvi fluência, ampliei vocabulário e fortaleci a comunicação em contextos multiculturais e profissionais.",
+      "exp.item2.title": "Service Dispatcher",
+      "exp.item2.org": "GLH General Services Corp · Remoto",
+      "exp.item2.l1": "Coordenei agendamento e despacho de serviços automotivos, garantindo comunicação eficiente entre clientes, técnicos e fornecedores.",
+      "exp.item2.l2": "Gerenciei ordens de serviço, prazos e prioridades, contribuindo para a eficiência operacional.",
+      "exp.item2.l3": "Desenvolvi habilidades de comunicação em inglês e negociação em ambiente multicultural.",
+      "exp.item3.title": "Monitor TI",
+      "exp.item3.org": "CNA Idiomas · Rio de Janeiro, Brasil",
+      "exp.item3.l1": "Desenvolvi e mantive dashboards interativos no Power BI, com coleta, limpeza e análise de dados.",
+      "exp.item3.l2": "Organizei bases de dados, criei KPIs e automatizei relatórios para apoiar a tomada de decisão estratégica.",
+      "exp.item3.l3": "Atuei no controle da área de infraestrutura, com suporte de rede e sistema operacional.",
+      "contact.eyebrow": "// vamos trabalhar juntos",
+      "contact.title": "Tem um projeto em mente? <em>Vamos conversar.</em>",
+      "contact.sub": "Estou aberto a oportunidades como desenvolvedor full stack. Me encontre nos canais abaixo ou envie um e-mail direto.",
+      "contact.email": "e-mail",
+      "footer.text": "Gabriel Resende de Moraes · Mesquita, RJ · (21) 98248-7195"
+    },
+    en: {
+      "nav.sobre": "ABOUT", "nav.skills": "SKILLS", "nav.experiencia": "EXPERIENCE", "nav.contato": "CONTACT",
+      "hero.eyebrow": "available for new opportunities",
+      "hero.title": "Gabriel Resende<br><em>builds</em> software<br>with data at the core.",
+      "hero.sub": "Full Stack Developer with a degree in Computer Science, currently pursuing a postgraduate degree at PUC-Rio. I build applications with Node.js, React and Python, bringing solid experience in data analysis and automation to support clearer decisions.",
+      "hero.cta1": "Let's talk →",
+      "hero.cta2": "View experience",
+      "about.eyebrow": "// about me",
+      "about.title": "From data analysis to full stack code.",
+      "about.p1": "I'm <strong>Gabriel Resende de Moraes</strong>, a Computer Science graduate from Estácio, currently pursuing a <strong>postgraduate degree in Full Stack Development at PUC-Rio</strong> (expected completion 01/2027).",
+      "about.p2": "My path started in data — building interactive dashboards in Power BI, creating KPIs and automating reports — before moving into software development. Today I bring both worlds together: building applications with data sustaining real decisions in mind.",
+      "about.p3": "I lived six months in <strong>Jacksonville, Florida</strong>, on an exchange program that gave me fluency in English and direct experience in multicultural environments — something I carry into how I communicate within teams.",
+      "about.p4": "I like getting hands-on with my own projects to put what I study into practice — I've worked across full stack applications from the front end to the database, always trying to understand the end user's problem before writing the first line of code.",
+      "about.edu1date": "2025", "about.edu1": "Computer Science — Estácio",
+      "about.edu2date": "expected 01/2027", "about.edu2": "Postgraduate in Full Stack Development — PUC-Rio",
+      "about.langs.eyebrow": "// languages",
+      "about.langs.pt": "Portuguese", "about.langs.ptlevel": "native",
+      "about.langs.en": "English", "about.langs.enlevel": "fluent",
+      "about.langs.es": "Spanish", "about.langs.eslevel": "intermediate",
+      "about.highlight.eyebrow": "// highlight",
+      "about.highlight.text": "Six months of full English immersion in the US, combining language fluency with real experience in a multicultural workplace — an uncommon combination for early-career developers.",
+      "skills.title": "What I use to build.",
+      "skills.count": "05 categories",
+      "skills.backend.title": "Backend", "skills.backend.tag": "server-side",
+      "skills.frontend.title": "Frontend", "skills.frontend.tag": "interface",
+      "skills.db.title": "Databases", "skills.db.tag": "data", "skills.db.modelagem": "Data Modeling",
+      "skills.devops.title": "DevOps &amp; Tools", "skills.devops.tag": "workflow",
+      "skills.ai.title": "AI &amp; Automation", "skills.ai.tag": "emerging",
+      "skills.ai.prompt": "Prompt Engineering", "skills.ai.llm": "LLM Automation", "skills.ai.api": "AI API Integration",
+      "skills.fund.title": "Fundamentals", "skills.fund.tag": "base",
+      "skills.fund.ed": "Data Structures", "skills.fund.algo": "Algorithms",
+      "skills.soft1": "Multicultural Communication", "skills.soft2": "Complex Problem Solving", "skills.soft3": "Teamwork",
+      "exp.title": "Professional journey.",
+      "exp.item1.title": "Professional Development &amp; International Immersion",
+      "exp.item1.org": "Jacksonville, Florida, USA",
+      "exp.item1.l1": "Completed an international exchange program focused on improving English language skills.",
+      "exp.item1.l2": "Developed fluency, expanded vocabulary, and strengthened communication in multicultural and professional contexts.",
+      "exp.item2.title": "Service Dispatcher",
+      "exp.item2.org": "GLH General Services Corp · Remote",
+      "exp.item2.l1": "Coordinated scheduling and dispatch of automotive services, ensuring efficient communication between customers, technicians, and suppliers.",
+      "exp.item2.l2": "Managed work orders, deadlines, and priorities, contributing to operational efficiency.",
+      "exp.item2.l3": "Developed English communication and negotiation skills in a multicultural environment.",
+      "exp.item3.title": "IT Monitor",
+      "exp.item3.org": "CNA Idiomas · Rio de Janeiro, Brazil",
+      "exp.item3.l1": "Built and maintained interactive dashboards in Power BI, with data collection, cleaning, and analysis.",
+      "exp.item3.l2": "Organized databases, created KPIs, and automated reports to support strategic decision-making.",
+      "exp.item3.l3": "Worked on infrastructure control, providing network and operating system support.",
+      "contact.eyebrow": "// let's work together",
+      "contact.title": "Have a project in mind? <em>Let's talk.</em>",
+      "contact.sub": "I'm open to opportunities as a full stack developer. Find me on the channels below or send a direct email.",
+      "contact.email": "email",
+      "footer.text": "Gabriel Resende de Moraes · Mesquita, RJ, Brazil · (21) 98248-7195"
+    }
+  };
 
+  const termLines = {
+    pt: [
+      { p: "$ ", t: "whoami", k: true },
+      { t: "Gabriel Resende de Moraes" },
+      { p: "$ ", t: "cat perfil.txt", k: true },
+      { t: "> Dev Full Stack | Estácio + PUC-Rio" },
+      { p: "$ ", t: "echo $LOCALIZACAO", k: true },
+      { t: "Mesquita, RJ — Brasil 🇧🇷" },
+      { p: "$ ", t: "status --disponibilidade", k: true },
+      { t: "✓ aberto a novas oportunidades" },
+    ],
+    en: [
+      { p: "$ ", t: "whoami", k: true },
+      { t: "Gabriel Resende de Moraes" },
+      { p: "$ ", t: "cat profile.txt", k: true },
+      { t: "> Full Stack Dev | Estácio + PUC-Rio" },
+      { p: "$ ", t: "echo $LOCATION", k: true },
+      { t: "Mesquita, RJ — Brazil 🇧🇷" },
+      { p: "$ ", t: "status --availability", k: true },
+      { t: "✓ open to new opportunities" },
+    ]
+  };
+
+  let currentLang = 'pt';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const text = i18n[lang][key];
+      if (text !== undefined) el.innerHTML = text;
+    });
+    document.querySelectorAll('.lang-flag').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    restartTerminal();
+  }
+
+  document.querySelectorAll('.lang-flag').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+
+  // ---------- terminal typing animation ----------
   const el = document.getElementById('termBody');
-  let li = 0, ci = 0;
+  let li = 0, ci = 0, termTimer = null;
 
   function typeLine() {
+    const lines = termLines[currentLang];
     if (li >= lines.length) {
       el.innerHTML += '<span class="t-prompt">$ </span><span class="cursor"></span>';
       return;
@@ -811,14 +983,22 @@
     if (ci <= text.length) {
       curDiv.innerHTML = prefix + (line.k ? `<span class="t-key">${text.slice(0, ci)}</span>` : text.slice(0, ci)) + '<span class="cursor"></span>';
       ci++;
-      setTimeout(typeLine, line.k ? 38 : 14);
+      termTimer = setTimeout(typeLine, line.k ? 38 : 14);
     } else {
       curDiv.removeAttribute('id');
       curDiv.innerHTML = prefix + (line.k ? `<span class="t-key">${text}</span>` : text);
       li++; ci = 0;
-      setTimeout(typeLine, line.k ? 380 : 220);
+      termTimer = setTimeout(typeLine, line.k ? 380 : 220);
     }
   }
+
+  function restartTerminal() {
+    clearTimeout(termTimer);
+    el.innerHTML = '';
+    li = 0; ci = 0;
+    typeLine();
+  }
+
   typeLine();
 
   // scroll reveal
