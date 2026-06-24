@@ -522,6 +522,82 @@
     color: var(--bg);
   }
 
+  /* ---------- projects ---------- */
+  .projects-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 720px){
+    .projects-grid{ grid-template-columns: 1fr; }
+  }
+  .project-card{
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .project-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px -16px rgba(28,30,27,0.18);
+    border-color: var(--terracotta);
+  }
+  .pj-head{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .pj-head h3{
+    font-size: 19px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+  }
+  .pj-link{
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .project-card:hover .pj-link{
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .project-card:hover .pj-link svg{
+    stroke: var(--bg);
+  }
+  .pj-desc{
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 18px;
+    flex-grow: 1;
+  }
+  .pj-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pj-tags li{
+    list-style:none;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: var(--ink);
+  }
+
   /* ---------- experience ---------- */
   .timeline{
     border-left: 2px solid var(--line);
@@ -654,6 +730,8 @@
       <span class="nav-sep">/</span>
       <a href="#skills" data-i18n="nav.skills">SKILLS</a>
       <span class="nav-sep">/</span>
+      <a href="#projetos" data-i18n="nav.projetos">PROJETOS</a>
+      <span class="nav-sep">/</span>
       <a href="#experiencia" data-i18n="nav.experiencia">EXPERIÊNCIA</a>
       <span class="nav-sep">/</span>
       <a href="#contato" data-i18n="nav.contato">CONTATO</a>
@@ -778,28 +856,28 @@
       <div class="skill-card reveal">
         <div class="sk-head"><h3 data-i18n="skills.backend.title">Backend</h3><span class="sk-tag" data-i18n="skills.backend.tag">server-side</span></div>
         <ul class="tag-list">
-          <li>Node.js</li><li>TypeScript</li><li>Java (Spring Boot)</li><li>Python</li><li>APIs RESTful</li>
+          <li>Node.js</li><li>TypeScript</li><li>Java (Spring Boot)</li><li>Python</li><li>Flask</li><li>Django</li><li>APIs RESTful</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
         <div class="sk-head"><h3 data-i18n="skills.frontend.title">Frontend</h3><span class="sk-tag" data-i18n="skills.frontend.tag">interface</span></div>
         <ul class="tag-list">
-          <li>JavaScript</li><li>React.js</li><li>Next.js</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li>
+          <li>JavaScript</li><li>React.js</li><li>React Native</li><li>Next.js</li><li>HTML5</li><li>CSS3</li><li>Tailwind CSS</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
         <div class="sk-head"><h3 data-i18n="skills.db.title">Bancos de Dados</h3><span class="sk-tag" data-i18n="skills.db.tag">dados</span></div>
         <ul class="tag-list">
-          <li>PostgreSQL</li><li>MySQL</li><li data-i18n="skills.db.modelagem">Modelagem de Dados</li><li>SQL</li>
+          <li>PostgreSQL</li><li>MySQL</li><li>SQLite</li><li data-i18n="skills.db.modelagem">Modelagem de Dados</li><li>SQL</li><li>Supabase</li>
         </ul>
       </div>
 
       <div class="skill-card reveal">
         <div class="sk-head"><h3 data-i18n="skills.devops.title">DevOps &amp; Ferramentas</h3><span class="sk-tag" data-i18n="skills.devops.tag">workflow</span></div>
         <ul class="tag-list">
-          <li>Git</li><li>GitHub</li>
+          <li>Git</li><li>GitHub</li><li>Vercel</li><li>Expo</li>
         </ul>
       </div>
 
@@ -826,8 +904,87 @@
   </div>
 </section>
 
+<!-- PROJETOS -->
+<section class="about" id="projetos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 data-i18n="projects.title">Projetos em destaque.</h2>
+      <span class="section-count mono" data-i18n="projects.count">04 destaques</span>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="pj-head">
+          <h3 data-i18n="projects.barbearia.title">Barbearia MVP</h3>
+          <a class="pj-link" href="https://github.com/GabrielMoraes02/barbearia-backendmvp" target="_blank" rel="noopener" aria-label="Ver no GitHub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <p class="pj-desc" data-i18n="projects.barbearia.desc">
+          Sistema completo de gestão para barbearia: cadastro de barbeiros e serviços, agendamentos com
+          grade de horários, registro de atendimentos e relatórios de faturamento. API REST própria
+          consumida por um painel administrativo.
+        </p>
+        <ul class="pj-tags">
+          <li>Python</li><li>Flask</li><li>SQLite</li><li>Swagger</li><li>JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pj-head">
+          <h3 data-i18n="projects.rifa.title">Site de Rifa Online</h3>
+          <a class="pj-link" href="https://github.com/GabrielMoraes02/site_rifa" target="_blank" rel="noopener" aria-label="Ver no GitHub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <p class="pj-desc" data-i18n="projects.rifa.desc">
+          Plataforma de rifa online com painel administrativo, pagamento via Pix/checkout pelo Mercado
+          Pago, upload de imagens com Cloudinary e envio de e-mails transacionais com Brevo.
+        </p>
+        <ul class="pj-tags">
+          <li>Django</li><li>Mercado Pago</li><li>Cloudinary</li><li>Brevo</li><li>Vercel</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pj-head">
+          <h3 data-i18n="projects.Ecocoleta.title">ecocoleta</h3>
+          <a class="pj-link" href="https://github.com/GabrielMoraes02" target="_blank" rel="noopener" aria-label="Ver no GitHub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <p class="pj-desc" data-i18n="projects.ecocoleta.desc">
+          App mobile voltado para coleta seletiva e reciclagem, com cadastro de pontos de coleta e
+          integração com banco de dados em tempo real.
+        </p>
+        <ul class="pj-tags">
+          <li>React Native</li><li>Expo</li><li>Supabase</li>
+        </ul>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pj-head">
+          <h3 data-i18n="projects.bot.title">Bot de Automação (Discord)</h3>
+          <a class="pj-link" href="https://github.com/GabrielMoraes02" target="_blank" rel="noopener" aria-label="Ver no GitHub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <p class="pj-desc" data-i18n="projects.bot.desc">
+          Bot de Discord que agiliza a entrada de dados de membros direto pelo servidor, integrando
+          automaticamente com planilhas Excel e gerando relatórios de desempenho conectados a
+          dashboards em Power BI.
+        </p>
+        <ul class="pj-tags">
+          <li>Python</li><li>JavaScript</li><li>Discord API</li><li>Excel</li><li>Power BI</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
 <!-- EXPERIENCIA -->
-<section class="about" id="experiencia">
+<section id="experiencia">
   <div class="wrap">
     <div class="section-head reveal">
       <h2 data-i18n="exp.title">Trajetória profissional.</h2>
@@ -931,7 +1088,7 @@
   // ---------- i18n dictionary ----------
   const i18n = {
     pt: {
-      "nav.sobre": "SOBRE", "nav.skills": "SKILLS", "nav.experiencia": "EXPERIÊNCIA", "nav.contato": "CONTATO",
+      "nav.sobre": "SOBRE", "nav.skills": "SKILLS", "nav.projetos": "PROJETOS", "nav.experiencia": "EXPERIÊNCIA", "nav.contato": "CONTATO",
       "hero.eyebrow": "disponível para novas oportunidades",
       "hero.title": "Gabriel Resende<br><em>desenvolve</em> software<br>com dados no centro.",
       "hero.sub": "Desenvolvedor Full Stack formado em Ciência da Computação, cursando pós-graduação na PUC-Rio. Construo aplicações pensando no problema de quem vai usar, unindo isso à minha experiência sólida em análise de dados para apoiar decisões com mais clareza.",
@@ -962,6 +1119,16 @@
       "skills.fund.title": "Fundamentos", "skills.fund.tag": "base",
       "skills.fund.ed": "Estrutura de Dados", "skills.fund.algo": "Algoritmos",
       "skills.soft1": "Comunicação Multicultural", "skills.soft2": "Resolução de Problemas Complexos", "skills.soft3": "Trabalho em Equipe",
+      "projects.title": "Projetos em destaque.",
+      "projects.count": "04 destaques",
+      "projects.barbearia.title": "Barbearia MVP",
+      "projects.barbearia.desc": "Sistema completo de gestão para barbearia: cadastro de barbeiros e serviços, agendamentos com grade de horários, registro de atendimentos e relatórios de faturamento. API REST própria consumida por um painel administrativo.",
+      "projects.rifa.title": "Site de Rifa Online",
+      "projects.rifa.desc": "Plataforma de rifa online com painel administrativo, pagamento via Pix/checkout pelo Mercado Pago, upload de imagens com Cloudinary e envio de e-mails transacionais com Brevo.",
+      "projects.ecocoleta.title": "ecocoleta",
+      "projects.ecocoleta.desc": "App mobile voltado para coleta seletiva e reciclagem, com cadastro de pontos de coleta e integração com banco de dados em tempo real.",
+      "projects.bot.title": "Bot de Automação (Discord)",
+      "projects.bot.desc": "Bot de Discord que agiliza a entrada de dados de membros direto pelo servidor, integrando automaticamente com planilhas Excel e gerando relatórios de desempenho conectados a dashboards em Power BI.",
       "exp.title": "Trajetória profissional.",
       "exp.item1.title": "Desenvolvimento Profissional &amp; Imersão Internacional",
       "exp.item1.org": "Jacksonville, Flórida, EUA",
@@ -985,7 +1152,7 @@
       "music.label": "lo-fi para codar"
     },
     en: {
-      "nav.sobre": "ABOUT", "nav.skills": "SKILLS", "nav.experiencia": "EXPERIENCE", "nav.contato": "CONTACT",
+      "nav.sobre": "ABOUT", "nav.skills": "SKILLS", "nav.projetos": "PROJECTS", "nav.experiencia": "EXPERIENCE", "nav.contato": "CONTACT",
       "hero.eyebrow": "available for new opportunities",
       "hero.title": "Gabriel Resende<br><em>builds</em> software<br>with data at the core.",
       "hero.sub": "Full Stack Developer with a degree in Computer Science, currently pursuing a postgraduate degree at PUC-Rio. I build applications with the end user's problem in mind, combining that with solid experience in data analysis to support clearer decisions.",
@@ -1016,6 +1183,16 @@
       "skills.fund.title": "Fundamentals", "skills.fund.tag": "base",
       "skills.fund.ed": "Data Structures", "skills.fund.algo": "Algorithms",
       "skills.soft1": "Multicultural Communication", "skills.soft2": "Complex Problem Solving", "skills.soft3": "Teamwork",
+      "projects.title": "Featured projects.",
+      "projects.count": "04 highlights",
+      "projects.barbearia.title": "Barbershop MVP",
+      "projects.barbearia.desc": "Full management system for a barbershop: barber and service registration, scheduling with time-slot availability, service logging, and revenue reports. Custom REST API consumed by an admin dashboard.",
+      "projects.rifa.title": "Online Raffle Site",
+      "projects.rifa.desc": "Online raffle platform with an admin dashboard, Pix/checkout payments via Mercado Pago, image uploads with Cloudinary, and transactional emails with Brevo.",
+      "projects.ecocoleta.title": "ecocoleta",
+      "projects.ecocoleta.desc": "Mobile app focused on selective waste collection and recycling, with collection point registration and real-time database integration.",
+      "projects.bot.title": "Automation Bot (Discord)",
+      "projects.bot.desc": "Discord bot that speeds up member data entry directly from the server, automatically integrating with Excel spreadsheets and generating performance reports connected to Power BI dashboards.",
       "exp.title": "Professional journey.",
       "exp.item1.title": "Professional Development &amp; International Immersion",
       "exp.item1.org": "Jacksonville, Florida, USA",
